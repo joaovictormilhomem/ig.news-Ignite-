@@ -6,12 +6,16 @@
           "patternType": "HEADING",
           "blocks": 1
         }
-      },
-      "content": {
-        "config": {
-          "patternType": "STORY",
-          "blocks": 1
-        }
+      }
+    },
+    "test": {},
+    "teste2": {}
+  },
+  "slices": {
+    "Test": {
+      "default": {
+        "primary": {},
+        "items": {}
       }
     }
   }

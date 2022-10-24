@@ -30,7 +30,23 @@ interface PublicationDocumentData {
      *
      */
     content: prismicT.RichTextField;
+    /**
+     * Slice Zone field in *Publication*
+     *
+     * - **Field Type**: Slice Zone
+     * - **Placeholder**: *None*
+     * - **API ID Path**: publication.slices[]
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/slices
+     *
+     */
+    slices: prismicT.SliceZone<PublicationDocumentDataSlicesSlice>;
 }
+/**
+ * Slice for *Publication → Slice Zone*
+ *
+ */
+type PublicationDocumentDataSlicesSlice = TestSlice;
 /**
  * Publication document from Prismic
  *
@@ -41,12 +57,110 @@ interface PublicationDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type PublicationDocument<Lang extends string = string> = prismicT.PrismicDocumentWithUID<Simplify<PublicationDocumentData>, "publication", Lang>;
-export type AllDocumentTypes = PublicationDocument;
+/** Content for Test22 documents */
+interface TestDocumentData {
+    /**
+     * test field in *Test22*
+     *
+     * - **Field Type**: Rich Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: test.test
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    test: prismicT.RichTextField;
+    /**
+     * test2 field in *Test22*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: test.test2
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    test2: prismicT.KeyTextField;
+    /**
+     * test3 field in *Test22*
+     *
+     * - **Field Type**: Content Relationship
+     * - **Placeholder**: *None*
+     * - **API ID Path**: test.test3
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    test3: prismicT.RelationField;
+    /**
+     * test4 field in *Test22*
+     *
+     * - **Field Type**: Group
+     * - **Placeholder**: *None*
+     * - **API ID Path**: test.test4[]
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/group
+     *
+     */
+    test4: prismicT.GroupField<Simplify<TestDocumentDataTest4Item>>;
+}
+/**
+ * Item in Test22 → test4
+ *
+ */
+export interface TestDocumentDataTest4Item {
+}
+/**
+ * Test22 document from Prismic
+ *
+ * - **API ID**: `test`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TestDocument<Lang extends string = string> = prismicT.PrismicDocumentWithUID<Simplify<TestDocumentData>, "test", Lang>;
+/** Content for teste2 documents */
+type Teste2DocumentData = Record<string, never>;
+/**
+ * teste2 document from Prismic
+ *
+ * - **API ID**: `teste2`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type Teste2Document<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<Teste2DocumentData>, "teste2", Lang>;
+export type AllDocumentTypes = PublicationDocument | TestDocument | Teste2Document;
+/**
+ * Default variation for Test Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: `Test`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type TestSliceDefault = prismicT.SharedSliceVariation<"default", Record<string, never>, never>;
+/**
+ * Slice variation for *Test*
+ *
+ */
+type TestSliceVariation = TestSliceDefault;
+/**
+ * Test Shared Slice
+ *
+ * - **API ID**: `test`
+ * - **Description**: `Test`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type TestSlice = prismicT.SharedSlice<"test", TestSliceVariation>;
 declare module "@prismicio/client" {
     interface CreateClient {
         (repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
     }
     namespace Content {
-        export type { PublicationDocumentData, PublicationDocument, AllDocumentTypes };
+        export type { PublicationDocumentData, PublicationDocumentDataSlicesSlice, PublicationDocument, TestDocumentData, TestDocumentDataTest4Item, TestDocument, Teste2DocumentData, Teste2Document, AllDocumentTypes, TestSliceDefault, TestSliceVariation, TestSlice };
     }
 }

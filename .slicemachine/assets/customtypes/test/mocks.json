@@ -1,0 +1,36 @@
+{
+  "id": "mock-doc-id",
+  "url": null,
+  "type": "test",
+  "href": null,
+  "tags": [],
+  "first_publication_date": "1970-01-01T00:00:01+0000",
+  "last_publication_date": "1970-01-01T00:00:01+0000",
+  "slugs": [],
+  "linked_documents": [],
+  "lang": "en-us",
+  "alternate_languages": [],
+  "data": {
+    "test": [
+      {
+        "type": "paragraph",
+        "text": "Amet quis non excepteur aliquip velit ex aliquip aute anim qui. Cupidatat do enim non nostrud esse tempor duis aute nulla. Velit esse cupidatat aute do sit mollit sunt veniam nulla aliqua.",
+        "spans": []
+      }
+    ],
+    "test2": "probably",
+    "test3": {
+      "id": "mock_document_id",
+      "link_type": "Document",
+      "type": "mock",
+      "tags": [],
+      "lang": "en-us",
+      "slug": null,
+      "first_publication_date": "1970-01-01T00:00:01+0000",
+      "last_publication_date": "1970-01-01T01:00:00+0000"
+    },
+    "test4": [
+      {}
+    ]
+  }
+}
